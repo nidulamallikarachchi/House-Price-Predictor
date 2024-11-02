@@ -6,6 +6,7 @@ import Visualization from "./Components/Visualization";
 import OurData from './Components/OurData';
 import AboutUs from './Components/AboutUs';
 import News from './Components/News';
+import RealEstateNews from "./Components/RealEstateNews";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/visualizer" element={<Visualization />} />
           <Route path="/our-data" element={<OurData />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/news" element={<RealEstateNews/>} />
         </Routes>
       </div>
     </Router>

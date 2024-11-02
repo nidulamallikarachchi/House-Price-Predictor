@@ -1,0 +1,54 @@
+/* Visualizations.module.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.barAffordable {
+    fill: steelblue;
+    rx: 5;
+    ry: 5;
+}
+
+.barNonAffordable {
+    fill: tomato;
+    rx: 5;
+    ry: 5;
+}
+
+.bar {
+    fill: steelblue;
+    rx: 5;
+    ry: 5;
+    transition: fill 0.3s ease;
+}
+
+.bar:hover {
+    fill: orange;
+}
+
+.axisLabel {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 12px;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.axis text {
+    font-size: 12px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}

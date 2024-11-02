@@ -1,0 +1,102 @@
+/* RealEstateNews.module.css */
+
+.realEstateNews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Adjusted to allow for more columns on larger screens */
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading,
+.error {
+    color: #555;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.article {
+    width: calc(50% - 10px); /* Default two-column layout for medium screens */
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.article:hover {
+    transform: translateY(-3px);
+}
+
+.article h1 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 12px;
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.article p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 12px;
+    line-height: 1.4;
+}
+
+.article a {
+    display: inline-block;
+    margin: 0 12px 12px;
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+.article a:hover {
+    color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+    .article {
+        width: calc(33.333% - 13.333px); /* Three columns for larger screens */
+    }
+}
+
+@media (min-width: 1440px) {
+    .article {
+        width: calc(25% - 15px); /* Four columns for extra-large screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .article {
+        width: calc(50% - 10px); /* Two columns for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .article {
+        width: calc(100% - 10px); /* Full width for small screens */
+    }
+
+    .realEstateNews {
+        padding: 10px; /* Reduced padding for very small screens */
+    }
+
+    .article h1 {
+        font-size: 1rem; /* Slightly smaller title text */
+    }
+
+    .article p {
+        font-size: 0.85rem; /* Slightly smaller paragraph text */
+    }
+}
