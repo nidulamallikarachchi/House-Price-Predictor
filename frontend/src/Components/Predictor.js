@@ -32,6 +32,7 @@ function Predictor() {
 
   return (
     <div className={styles.outerContainer}>
+      <div className={styles.backgroundImage}></div>
       <div className={styles.App}>
         <h2>House Price Prediction</h2>
         <form onSubmit={handleSubmit}>

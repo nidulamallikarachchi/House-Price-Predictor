@@ -6,10 +6,21 @@
   min-height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
   overflow: hidden;
-  background: url('background.jpeg') center center / cover no-repeat;
+  /*background: url('background.jpeg') center center / cover no-repeat;*/
   position: fixed; /* Locks the outer container to the viewport */
   inset: 0; /* Fills the viewport without padding */
-  backdrop-filter: blur(100px); /* Adds blur effect to the background */
+  /*backdrop-filter: blur(100px); !* Adds blur effect to the background *!*/
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('background.jpeg') center center / cover no-repeat;
+  filter: blur(12px); /* Direct blur applied to image */
+  z-index: -1; /* Puts the background image behind the form */
 }
 
 /* Prevents scrolling */
