@@ -12,7 +12,8 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import usaStates from './usa_states.json';
 
@@ -33,7 +34,7 @@ function Visualization() {
   const [baths, setBaths] = useState(1);
   const [chartType, setChartType] = useState("line");
   const [chartData, setChartData] = useState(null);
-  const [choroplethData, setChoroplethData] = useState([]);
+  const [choroplethData, setChoroplethData] = useState({});
 
   const fetchPredictions = async () => {
     try {
@@ -83,6 +84,7 @@ function Visualization() {
 
   // Function to set choropleth color based on price
   const getChoroplethColor = (price) => {
+    if (price == null) return '#808080'; // Grey for states without data
     return price > 500000 ? '#800026' :
            price > 300000 ? '#BD0026' :
            price > 200000 ? '#E31A1C' :
@@ -97,13 +99,43 @@ function Visualization() {
     const stateName = feature.properties.name;
     const price = choroplethData[stateName];
     return {
-      fillColor: getChoroplethColor(price || 0),
+      fillColor: getChoroplethColor(price),
       weight: 2,
       opacity: 1,
       color: 'white',
       dashArray: '3',
       fillOpacity: 0.7
     };
+  };
+
+  // Function to handle mouseover and mouseout events for tooltip
+  const onEachFeature = (feature, layer) => {
+    const stateName = feature.properties.name;
+    const price = choroplethData[stateName];
+    const priceText = price ? `$${price.toLocaleString()}` : "No data available";
+
+    layer.bindTooltip(priceText, { permanent: false, direction: "center" });
+
+    layer.on({
+      mouseover: (e) => {
+        const layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#666",
+          fillOpacity: 0.9
+        });
+        layer.openTooltip();
+      },
+      mouseout: (e) => {
+        const layer = e.target;
+        layer.setStyle({
+          weight: 2,
+          color: 'white',
+          fillOpacity: 0.7
+        });
+        layer.closeTooltip();
+      }
+    });
   };
 
   return (
@@ -154,7 +186,7 @@ function Visualization() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <GeoJSON data={usaStates} style={style} />
+          <GeoJSON data={usaStates} style={style} onEachFeature={onEachFeature} />
         </MapContainer>
       )}
     </div>
