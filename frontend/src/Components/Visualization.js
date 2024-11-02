@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {
@@ -12,6 +12,9 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import usaStates from './usa_states.json';
 
 // Register the required Chart.js components
 ChartJS.register(
@@ -30,6 +33,7 @@ function Visualization() {
   const [baths, setBaths] = useState(1);
   const [chartType, setChartType] = useState("line");
   const [chartData, setChartData] = useState(null);
+  const [choroplethData, setChoroplethData] = useState([]);
 
   const fetchPredictions = async () => {
     try {
@@ -42,6 +46,14 @@ function Visualization() {
       // Prepare data for Chart.js
       const labels = data.map(item => item.state);
       const prices = data.map(item => parseFloat(item.predicted_price.replace(/[$,]/g, "")));
+
+      // Set up data for choropleth map
+      setChoroplethData(
+        data.reduce((acc, item) => {
+          acc[item.state] = parseFloat(item.predicted_price.replace(/[$,]/g, ""));
+          return acc;
+        }, {})
+      );
 
       // Ensure re-render cleanup by setting to null before setting new data
       setChartData(null);
@@ -69,6 +81,31 @@ function Visualization() {
     fetchPredictions();
   };
 
+  // Function to set choropleth color based on price
+  const getChoroplethColor = (price) => {
+    return price > 500000 ? '#800026' :
+           price > 300000 ? '#BD0026' :
+           price > 200000 ? '#E31A1C' :
+           price > 100000 ? '#FC4E2A' :
+           price > 50000  ? '#FD8D3C' :
+           price > 20000  ? '#FEB24C' :
+                            '#FFEDA0';
+  };
+
+  // Style for each state based on its predicted price
+  const style = (feature) => {
+    const stateName = feature.properties.name;
+    const price = choroplethData[stateName];
+    return {
+      fillColor: getChoroplethColor(price || 0),
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7
+    };
+  };
+
   return (
     <div className="Visualization">
       <h2>House Price Predictions Visualization</h2>
@@ -93,10 +130,11 @@ function Visualization() {
         </label>
 
         <label>
-          Select Chart Type:
+          Select Visualization Type:
           <select value={chartType} onChange={(e) => setChartType(e.target.value)} required>
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
+            <option value="choropleth">Choropleth Map</option>
           </select>
         </label>
 
@@ -108,6 +146,16 @@ function Visualization() {
           {chartType === "line" && <Line data={chartData} />}
           {chartType === "bar" && <Bar data={chartData} />}
         </div>
+      )}
+
+      {chartType === "choropleth" && choroplethData && (
+        <MapContainer style={{ height: "500px", width: "100%" }} center={[37.8, -96]} zoom={4}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          <GeoJSON data={usaStates} style={style} />
+        </MapContainer>
       )}
     </div>
   );
