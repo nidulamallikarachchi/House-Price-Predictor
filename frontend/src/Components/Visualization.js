@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import axios from "axios";
+import styles from './Styles/Visualization.module.css'
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -141,8 +142,8 @@ const onEachFeature = (feature, layer) => {
 
 
   return (
-    <div className="Visualization">
-      <h2>House Price Predictions Visualization</h2>
+    <div className={styles.visualizationContainer}>
+      <h1 className={styles.headerTitle}>House Price Predictions Visualization</h1>
 
       <form onSubmit={handlePredictClick}>
         <label>
