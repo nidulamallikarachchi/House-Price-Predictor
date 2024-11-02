@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {
@@ -12,8 +12,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
-import L from 'leaflet';
+import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import usaStates from './usa_states.json';
 
