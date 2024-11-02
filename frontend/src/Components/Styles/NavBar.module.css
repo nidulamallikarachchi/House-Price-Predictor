@@ -1,0 +1,69 @@
+/* Navbar container */
+.nav {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Distributes space between logo and nav items */
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Website logo styling */
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #3498db;
+}
+
+/* Navigation list styling */
+.navList {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each nav item */
+.navItem {
+  position: relative;
+}
+
+/* Link styles */
+.navLink {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+/* Link hover effect with background color change */
+.navLink:hover {
+  background-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Underline indicator effect for the active item */
+.navItem::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #3498db;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navLink:hover + .navItem::after,
+.navLink:focus + .navItem::after {
+  opacity: 1;
+}

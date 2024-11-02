@@ -14,7 +14,7 @@ import {
 } from 'chart.js';
 import { MapContainer, TileLayer, GeoJSON} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import usaStates from './usa_states.json';
+import usaStates from './Data/usa_states.json';
 
 // Register the required Chart.js components
 ChartJS.register(
