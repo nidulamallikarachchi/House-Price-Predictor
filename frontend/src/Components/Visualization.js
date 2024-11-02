@@ -107,35 +107,38 @@ function Visualization() {
     };
   };
 
-  // Function to handle mouseover and mouseout events for tooltip
-  const onEachFeature = (feature, layer) => {
-    const stateName = feature.properties.name;
-    const price = choroplethData[stateName];
-    const priceText = price ? `$${price.toLocaleString()}` : "No data available";
+const onEachFeature = (feature, layer) => {
+  const stateName = feature.properties.name;
+  const price = choroplethData[stateName];
+  const priceText = price ? `$${price.toLocaleString()}` : "No data available";
 
-    layer.bindTooltip(priceText, { permanent: false, direction: "center" });
+  // Display state name along with price
+  const tooltipContent = `<strong>${stateName}</strong><br>${priceText}`;
 
-    layer.on({
-      mouseover: (e) => {
-        const layer = e.target;
-        layer.setStyle({
-          weight: 3,
-          color: "#666",
-          fillOpacity: 0.9
-        });
-        layer.openTooltip();
-      },
-      mouseout: (e) => {
-        const layer = e.target;
-        layer.setStyle({
-          weight: 2,
-          color: 'white',
-          fillOpacity: 0.7
-        });
-        layer.closeTooltip();
-      }
-    });
-  };
+  layer.bindTooltip(tooltipContent, { permanent: false, direction: "center" });
+
+  layer.on({
+    mouseover: (e) => {
+      const layer = e.target;
+      layer.setStyle({
+        weight: 3,
+        color: "#666",
+        fillOpacity: 0.9
+      });
+      layer.openTooltip();
+    },
+    mouseout: (e) => {
+      const layer = e.target;
+      layer.setStyle({
+        weight: 2,
+        color: 'white',
+        fillOpacity: 0.7
+      });
+      layer.closeTooltip();
+    }
+  });
+};
+
 
   return (
     <div className="Visualization">
