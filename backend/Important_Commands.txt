@@ -1,0 +1,2 @@
+netstat -a -n -o | findstr :3000
+taskkill /PID 1234 /F
