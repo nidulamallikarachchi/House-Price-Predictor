@@ -8,6 +8,7 @@ import joblib
 # Initialize FastAPI app
 app = FastAPI()
 
+
 # Constants and configuration
 AVAILABLE_STATES = [
     "New York", "Pennsylvania", "District of Columbia", "Maryland", "Virginia",
@@ -38,10 +39,12 @@ class PredictionRequest(BaseModel):
     bedrooms: int
     baths: int
 
+
 # Request model for all states prediction
 class PredictionRequestAllStates(BaseModel):
     bedrooms: int
     baths: int
+
 
 # Helper function to retrieve crime data for a given state
 def get_crime_data(state: str) -> Dict[str, float]:
@@ -53,43 +56,85 @@ def get_crime_data(state: str) -> Dict[str, float]:
         "violence_per_100_000": crime_stats['violence_per_100_000'].values[0]
     }
 
+
+# Helper function to capitalize state correctly
+def format_state(state: str) -> str:
+    formatted_state = ' '.join(word.capitalize() for word in state.split())
+    if formatted_state not in AVAILABLE_STATES:
+        raise ValueError("Invalid state name. Please enter a valid U.S. state.")
+    return formatted_state
+
+
 # Endpoint to predict house price for a specific state
 @app.post("/predict_price/")
 async def predict_price(request: PredictionRequest):
     try:
-        crime_stats = get_crime_data(request.state)
+        # Validate and format input
+        if request.bedrooms > 5:
+            raise HTTPException(status_code=400, detail="Number of bedrooms too high.")
+        if request.baths > 4:
+            raise HTTPException(status_code=400, detail="Number of baths too high.")
+        if request.bedrooms <= 0:
+            raise HTTPException(status_code=400, detail="Number of bedrooms must be greater than 0.")
+        if request.baths <= 0:
+            raise HTTPException(status_code=400, detail="Number of baths must be greater than 0.")
+
+        state = format_state(request.state)
+        crime_stats = get_crime_data(state)
+
+        # Prepare input data
         input_data = pd.DataFrame({
             'beds': [request.bedrooms],
             'baths': [request.baths],
             'property_per_100_000': [crime_stats["property_per_100_000"]],
             'violence_per_100_000': [crime_stats["violence_per_100_000"]],
-            'state': [request.state]
+            'state': [state]
         })
+
+        # Make prediction
         predicted_price = best_rf_regressor.predict(input_data)[0]
         return {"predicted_price": round(predicted_price, 2)}
+
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error in prediction: {e}")
 
+
 # Endpoint to predict house prices for all available states
 @app.post("/predict_price_for_all_states/")
 async def predict_price_for_all_states(request: PredictionRequestAllStates) -> List[Dict]:
-    predictions = []
-    for state in AVAILABLE_STATES:
-        try:
-            crime_stats = get_crime_data(state)
-            input_data = pd.DataFrame({
-                'beds': [request.bedrooms],
-                'baths': [request.baths],
-                'property_per_100_000': [crime_stats["property_per_100_000"]],
-                'violence_per_100_000': [crime_stats["violence_per_100_000"]],
-                'state': [state]
-            })
-            predicted_price = best_rf_regressor.predict(input_data)[0]
-            predictions.append({'state': state, 'predicted_price': f"${predicted_price:,.2f}"})
-        except ValueError:
-            predictions.append({'state': state, 'error': "No data available for this state."})
-        except Exception as e:
-            predictions.append({'state': state, 'error': str(e)})
-    return predictions
+    try:
+        # Validate input for bedrooms and baths
+        if request.bedrooms > 5:
+            raise HTTPException(status_code=400, detail="Number of bedrooms too high.")
+        if request.baths > 4:
+            raise HTTPException(status_code=400, detail="Number of baths too high.")
+        if request.bedrooms <= 0:
+            raise HTTPException(status_code=400, detail="Number of bedrooms must be greater than 0.")
+        if request.baths <= 0:
+            raise HTTPException(status_code=400, detail="Number of baths must be greater than 0.")
+
+        predictions = []
+        for state in AVAILABLE_STATES:
+            try:
+                crime_stats = get_crime_data(state)
+                input_data = pd.DataFrame({
+                    'beds': [request.bedrooms],
+                    'baths': [request.baths],
+                    'property_per_100_000': [crime_stats["property_per_100_000"]],
+                    'violence_per_100_000': [crime_stats["violence_per_100_000"]],
+                    'state': [state]
+                })
+                predicted_price = best_rf_regressor.predict(input_data)[0]
+                predictions.append({'state': state, 'predicted_price': f"${predicted_price:,.2f}"})
+            except ValueError:
+                predictions.append({'state': state, 'error': "No data available for this state."})
+            except Exception as e:
+                predictions.append({'state': state, 'error': str(e)})
+        return predictions
+
+    except HTTPException as e:
+        raise e  # Pass specific validation errors back to the client
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error in prediction for all states: {e}")
