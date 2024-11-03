@@ -143,30 +143,30 @@ const onEachFeature = (feature, layer) => {
 
   return (
     <div className={styles.visualizationContainer}>
-      <h1 className={styles.headerTitle}>House Price Predictions Visualization</h1>
+      <h1 className={styles.headerTitle}>Prediction Visualizer</h1>
 
       <form onSubmit={handlePredictClick}>
-        <label>
-          Bedrooms:
-          <select value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} required>
+        <label className={styles.visualizationLabels}>
+          Bedrooms
+          <select className={styles.visualizationSelectors} value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} required>
             {[1, 2, 3, 4, 5].map((num) => (
               <option key={num} value={num}>{num}</option>
             ))}
           </select>
         </label>
 
-        <label>
-          Bathrooms:
-          <select value={baths} onChange={(e) => setBaths(parseInt(e.target.value))} required>
+        <label className={styles.visualizationLabels}>
+          Bathrooms
+          <select className={styles.visualizationSelectors} value={baths} onChange={(e) => setBaths(parseInt(e.target.value))} required>
             {[1, 2, 3, 4].map((num) => (
               <option key={num} value={num}>{num}</option>
             ))}
           </select>
         </label>
 
-        <label>
-          Select Visualization Type:
-          <select value={chartType} onChange={(e) => setChartType(e.target.value)} required>
+        <label className={styles.visualizationLabels}>
+          Select Visualization Type
+          <select className={styles.visualizationSelectors} value={chartType} onChange={(e) => setChartType(e.target.value)} required>
             <option value="line">Line Chart</option>
             <option value="bar">Bar Chart</option>
             <option value="choropleth">Choropleth Map</option>
