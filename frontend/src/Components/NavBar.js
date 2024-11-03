@@ -5,7 +5,7 @@ import styles from './Styles/NavBar.module.css';
 const NavBar = () => {
   return (
     <nav className={styles.nav}>
-      <div className={styles.logo}>MyWebsite</div>
+      <div className={styles.logo}>Realtor.dev</div>
       <ul className={styles.navList}>
         <li className={styles.navItem}><Link to="/predictor" className={styles.navLink}>Predictor</Link></li>
         <li className={styles.navItem}><Link to="/visualizer" className={styles.navLink}>Visualizer</Link></li>

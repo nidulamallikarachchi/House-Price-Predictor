@@ -8,7 +8,7 @@ import styles from './Styles/OurData.module.css'
 const OurData = () => {
     return(
         <div className={styles.ourDataContainer}>
-            <h1 className={styles.dataHeading}>Data We Used for Our Model</h1>
+            <center><h1 className={styles.dataHeading}>Data We Used for Our Model</h1></center>
             <p>Description </p>
 
             <h2>Average Property Price By State</h2>
