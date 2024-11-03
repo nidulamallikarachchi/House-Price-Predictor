@@ -1,0 +1,68 @@
+/* src/pages/Styles/AboutUs.module.css */
+
+.aboutUs {
+  text-align: center;
+  margin-top: -50px;
+}
+
+.teamContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.teamMember {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.teamImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+#heading1 {
+  font-size: xx-large;
+}
+
+#memberRole {
+  font-size: x-large;
+}
+
+#memberName {
+  color: #4897d8;
+}
+
+p {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.contributionsHeading {
+  font-size: 1.1em;
+  margin-top: 15px;
+  color: #555;
+}
+
+.contributionsList {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.contributionItem {
+  font-size: 0.95em;
+  background-color: #e8f1fc;
+  color: #326fa8;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
