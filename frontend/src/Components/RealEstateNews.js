@@ -33,20 +33,25 @@ const RealEstateNews = () => {
     }
 
     return (
-        <div className={styles.realEstateNews}> {/* Apply the CSS module style */}
-            {news.length === 0 ? (
-                <p>No news articles found.</p>
-            ) : (
-                news.map((article, index) => (
-                    <div key={index} className={styles.article}>
-                        <h1>{article.title}</h1>
-                        {article.urlToImage && <img src={article.urlToImage} alt={article.title} />}
-                        <p>{article.description}</p>
-                        <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                    </div>
-                ))
-            )}
+        <div className={styles.newsContainer}>
+            <center><h1>Real Estate News</h1></center>
+
+            <div className={styles.realEstateNews}> {/* Apply the CSS module style */}
+                {news.length === 0 ? (
+                    <p>No news articles found.</p>
+                ) : (
+                    news.map((article, index) => (
+                        <div key={index} className={styles.article}>
+                            <h1>{article.title}</h1>
+                            {article.urlToImage && <img src={article.urlToImage} alt={article.title}/>}
+                            <p>{article.description}</p>
+                            <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
+
     );
 };
 

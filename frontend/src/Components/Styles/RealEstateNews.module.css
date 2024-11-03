@@ -1,5 +1,7 @@
 /* RealEstateNews.module.css */
-
+.newsContainer{
+    margin-top: -40px;
+}
 .realEstateNews {
     display: flex;
     flex-wrap: wrap;
