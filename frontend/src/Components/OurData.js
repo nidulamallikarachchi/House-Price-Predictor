@@ -9,7 +9,11 @@ const OurData = () => {
     return(
         <div className={styles.ourDataContainer}>
             <center><h1 className={styles.dataHeading}>Data We Used for Our Model</h1></center>
-            <p>Description </p>
+            <p>In our effort to enhance the house market prediction model, we utilized two critical datasets: house prices and crime rates. Understanding the interplay between these factors is essential for predicting housing trends and making informed decisions for potential buyers and investors.
+
+The house prices dataset provides a comprehensive overview of property values across various neighborhoods, reflecting market dynamics influenced by location, size, and other attributes. In contrast, the crime rate dataset offers insights into the safety and security of these neighborhoods, which can significantly impact buyer sentiment and property values.
+
+In this section, we present visualizations that illustrate key trends and correlations between house prices and crime rates. These graphs will help users identify patterns, assess risks, and gain a clearer understanding of how neighborhood safety can affect property values. By integrating these datasets, we aim to provide a more holistic view of the housing market, empowering users with the data needed for sound investment decisions. </p>
 
             <h2>Average Property Price By State</h2>
             <div className={styles.visualizationN}>
