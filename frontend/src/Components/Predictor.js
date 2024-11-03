@@ -34,7 +34,7 @@ function Predictor() {
     <div className={styles.outerContainer}>
       <div className={styles.backgroundImage}></div>
       <div className={styles.App}>
-        <h2>House Price Prediction</h2>
+        <h1 className={styles.headingPredictionForm}>House Price Prediction</h1>
         <form onSubmit={handleSubmit}>
           <label>
             State:

@@ -47,24 +47,21 @@ const AboutUs = () => {
       <div className={styles.aboutUs}>
         <h1 id={styles.heading1}>Our Goal</h1>
 
-        <p>The Housing Market in the USA is vast and complex, with numerous factors influencing housing prices. These
-          factors include location, property size, number of bedrooms and bathrooms, year built and many more.
-          Predicting housing prices accurately is vital for future investors, home buyers, home sellers, real estate
-          agents
-          and financial institutions, especially banks. With the power of computing and new concepts like machine
-          learning, we can analyze and predict housing prices for the future accurately. Although we cannot be certain,
-          the results that are generated using machine learning results will mostly be accurate due to the large dataset
-          in
-          its backend that shows how the prices increased or decreased over time. The predictions that are generated
-          by these models can then be used by stakeholders in making informed decisions.
-          Our aim is to develop a full-stack web application that hosts a machine learning model to predict housing
-          prices. As of now we have found a dataset that fits these criteria, that contains over 1 million lines of
-          data. This
-          dataset will help us accurately predict data needed for our project. But due to its massive size we might
-          decide
-          on choosing a certain state, or a couple of states to implement in the learning model. The other states’ data
-          will
-          be used as testing data to make sure that the model works well.
+        <p className={styles.aboutUsDescription}>
+          In this project, we embarked on developing a comprehensive ML-powered web application for house price prediction, meticulously designed to provide users with a streamlined and interactive experience tailored to their specific needs. The core of our solution lies in a sophisticated machine learning model that was meticulously trained on extensive real estate datasets. This model is capable of predicting home values based on various critical features, including location, property size, number of bedrooms and bathrooms, and additional relevant attributes. By harnessing the predictive capabilities of artificial intelligence, we aim to empower users with accurate, data-driven insights into property pricing.
+
+          <br/><br/>
+          To support our ML model, we implemented a robust backend using FastAPI, which is known for its high performance and ability to handle asynchronous requests efficiently. This choice allows for rapid, real-time processing of user inputs, ensuring that predictions are delivered almost instantaneously. Users can expect a smooth experience as they input their property details and receive immediate feedback on predicted values. The backend seamlessly integrates with the frontend, which is developed using React.js to create a highly engaging, dynamic user interface. The React framework is particularly well-suited for building interactive applications, enabling us to craft a responsive design that adjusts beautifully across various devices, including desktops, tablets, and smartphones.
+
+          <br/><br/>
+          A key feature of our application is the incorporation of three interactive data visualizations: a bar graph, a line graph, and a dynamic map. The bar graph provides a clear visual representation of price comparisons across different properties, allowing users to quickly gauge how specific features correlate with property values. The line graph offers insights into pricing trends over time, helping users to understand market fluctuations and make informed decisions about their real estate investments. However, perhaps the most engaging aspect of our visualization suite is the dynamic map. This feature allows users to visualize property prices in different geographic regions and see how these prices shift based on their selected criteria, specifically the number of bedrooms and bathrooms. By manipulating these inputs, users can observe real-time updates in price predictions on the map, providing an intuitive understanding of how specific housing features impact overall value in various locales.
+
+          <br/><br/>
+          Throughout the development process, we placed a strong emphasis on enhancing the user experience. We designed intuitive input forms that guide users effortlessly through the data entry process, ensuring that they can easily provide the necessary information without feeling overwhelmed. Real-time feedback mechanisms were implemented to inform users instantly about any errors or adjustments needed in their input, thereby reducing frustration and enhancing satisfaction. Smooth navigation throughout the application was prioritized, allowing users to move seamlessly between input forms, visualizations, and results. Furthermore, robust error handling was built into the system to manage any potential issues gracefully, ensuring that users can rely on the application for consistent performance.
+
+          <br/><br/>
+          This application serves not only as a tool for accurate price predictions but also as a comprehensive resource that empowers users to explore and understand real estate trends in a meaningful way. By combining the analytical power of ML with a user-friendly interface and engaging visual tools, we have created a platform that transforms the often complex and intimidating process of house buying into a more accessible and insightful journey. Ultimately, this project exemplifies the intersection of technology and user experience design, resulting in a powerful application that caters to the diverse needs of homebuyers and real estate professionals alike.
+
         </p>
 
         <h1 id={styles.heading1}>Meet the Team</h1>

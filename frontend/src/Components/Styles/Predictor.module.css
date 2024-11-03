@@ -44,7 +44,7 @@ html, body {
 }
 
 /* Title styling */
-h2 {
+.headingPredictionForm {
   text-align: center;
   color: #ffffff;
   font-size: 1.5rem;
