@@ -11,7 +11,7 @@ const AboutUs = () => {
   // Team members data
   const teamMembers = [
     {
-      name: "Movindu Wijenayaka",
+      name: "Movindu Wijenayake",
       role: "Project Manager",
       description: "Having had a understanding of project management from the start I was selected to oversee all the tasks undertaken for this project regarding predictions of the US housing market. My role involved coordinating project tasks, setting project timelines, and ensuring clear communication between Team members.",
       contributions: [
