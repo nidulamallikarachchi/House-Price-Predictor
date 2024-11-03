@@ -39,7 +39,7 @@ const CrimeChoroplethMap = () => {
                     z: geojson.features.map(f => f.properties.violence_per_100_000), // Violence crime rate
                     text: geojson.features.map(f => `${f.properties.name}<br>Violent Crime: ${f.properties.violence_per_100_000 || "N/A"}<br>Property Crime: ${f.properties.property_per_100_000 || "N/A"}`),
                     colorbar: {
-                        title: 'Violent Crime Rate per 100,000'
+                        title: ''
                     },
                     colorscale: [
                         [0, 'rgb(253,202,106)'],
@@ -61,7 +61,7 @@ const CrimeChoroplethMap = () => {
                         center: { lon: -95.71, lat: 37.09 },
                         zoom: 3
                     },
-                    title: 'US Crime Rates by State (per 100,000 people)',
+                    title: '',
                     margin: { t: 40, b: 20 }
                 };
 

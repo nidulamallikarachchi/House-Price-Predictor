@@ -1,0 +1,51 @@
+body{
+    overflow: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.ourDataContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.visualizationN{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.graph {
+    width: 65%;
+    background-color: #efefef; /* White background for graphs */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Base shadow */
+    transition: box-shadow 0.3s ease; /* Transition for the shadow */
+}
+
+.graph:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.description{
+    padding: 10px;
+    width: 35%;
+}
+
+h2{
+    color: black;
+    text-align: start;
+    margin: 10px 0 10px 0;
+}
+
+.dataHeading{
+    margin: -20px 0 0 0 ;
+}
+
+@media (max-width: 768px) {
+    .visualizationN {
+        flex-direction: column; /* Stack elements on smaller screens */
+    }
+
+    .graph, .description {
+        width: 100%; /* Full width for mobile */
+    }
+}
