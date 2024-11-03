@@ -3,9 +3,9 @@ import React from "react";
 import styles from './Styles/AboutUs.module.css';
 
 // Import images
-import member1Image from "./Data/logo192.png";
-import member2Image from "./Data/logo192.png";
-import member3Image from "./Data/logo192.png";
+import member1Image from "./Data/Movindu.jpg";
+import member2Image from "./Data/Nidula.jpg";
+import member3Image from "./Data/Nisura.jpg";
 
 const AboutUs = () => {
   // Team members data
@@ -18,7 +18,7 @@ const AboutUs = () => {
         "Project Coordination",
         "Documentation"
       ],
-      image: member2Image,
+      image: member1Image,
     },
     {
       name: "Nidula Mallikarachchi",
@@ -30,7 +30,7 @@ const AboutUs = () => {
         "Backend Development",
           "Documentation",
       ],
-      image: member1Image,
+      image: member2Image,
     },
     {
       name: "Nisura Weerakkody",
